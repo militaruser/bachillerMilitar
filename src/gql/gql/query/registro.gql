@@ -1,0 +1,14 @@
+mutation registro($datos: EncuentroNacionalInput!)
+{
+  registro(datos: $datos)
+  {
+    ...fragRegistro
+  }
+}
+query listado
+{
+  listado
+  {
+    ...fragRegistro
+  }
+}

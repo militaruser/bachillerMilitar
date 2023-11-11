@@ -1,0 +1,22 @@
+fragment fragRegistro on EncuentroNacionalType
+{
+  _id
+  idBuscar
+
+  nombrePlantel
+  correoPlantel
+  telefonoPlantel
+  estadoPlantel
+  municipioPlantel
+  callePlantel
+  coloniaPlantel
+
+  nombreContig
+  correoContig
+  telefonoContig
+
+  nombreAlumno
+  fotografia
+  disciplina
+  modalidad
+}

@@ -1,0 +1,129 @@
+<div class="container mt-5">
+  <mat-card class="z-3 shadow-lg">
+    <mat-card-title class="p-2 border-bottom">Registro para el encuentro nacional de bachilleratos militarizados</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="formReg">
+        <div class="d-flex flex-column">
+          <fieldset class="border p-4 m-4">
+            <legend class="fs-6">Datos del plantel</legend>
+            <div class="d-flex flex-column p-4">
+              <mat-form-field appearance="outline" class="flex-fill">
+                <mat-label>nombre del plantel</mat-label>
+                <input matInput formControlName="nombrePlantel">
+                <mat-error>El campo es necesario</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Correo del plantel</mat-label>
+                <input matInput formControlName="correoPlantel">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Telefono plantel</mat-label>
+                <input matInput formControlName="telefonoPlantel">
+              </mat-form-field>
+              <div class="d-flex flex-row gap-4 justify-content-between">
+                <mat-form-field appearance="outline" class="flex-fill">
+                  <mat-label>Estado</mat-label>
+                  <input matInput formControlName="estadoPlantel">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="flex-fill">
+                  <mat-label>Municipio</mat-label>
+                  <input matInput formControlName="municipioPlantel">
+                </mat-form-field>
+              </div>
+              <div class="d-flex flex-row gap-4 justify-content-between">
+                <mat-form-field appearance="outline" class="flex-fill">
+                  <mat-label>Calle</mat-label>
+                  <input matInput formControlName="callePlantel">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="flex-fill">
+                  <mat-label>Colonia</mat-label>
+                  <input matInput formControlName="coloniaPlantel">
+                </mat-form-field>
+              </div>
+            </div>
+          </fieldset>
+
+
+          <fieldset class="border p-4 m-4">
+            <legend class="fs-6">Responsable del contigente</legend>
+            <div class="d-flex flex-column p-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombreContig">
+              </mat-form-field>
+
+              <div class="d-flex flex-row gap-4 justify-content-between">
+                <mat-form-field appearance="outline" class="flex-grow-1">
+                  <mat-label>Correo</mat-label>
+                  <input matInput formControlName="correoContig">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="flex-grow-0">
+                  <mat-label>Telefono</mat-label>
+                  <input matInput formControlName="telefonoContig">
+                </mat-form-field>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="border p-4 m-4">
+            <legend class="fs-6">Datos del estudiante</legend>
+            <div class="d-flex flex-column p-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre completo</mat-label>
+                <input matInput formControlName="nombreAlumno">
+              </mat-form-field>
+
+              <div class="d-flex flex-row gap-4 justify-content-between">
+                <mat-form-field appearance="outline" class="flex-fill">
+                  <mat-label>Disciplina</mat-label>
+                  <mat-select formControlName="disciplina">
+                    <mat-option value="Banda de guerra">Banda de guerra</mat-option>
+                    <mat-option value="Juegos deportivos">Juegos deportivos</mat-option>
+                    <mat-option value="Pista">Pista</mat-option>
+                    <mat-option value="Adiestramiento">Adiestramiento</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="flex-fill">
+                  <mat-label>Modalidad</mat-label>
+                  <mat-select formControlName="modalidad">
+                    <mat-option value="Femenil">Femenil</mat-option>
+                    <mat-option value="Varonil">Varonil</mat-option>
+                    <mat-option value="Mixta">Mixta</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <mat-form-field>
+                <mat-label>Selecciona tu fotografia</mat-label>
+                <ngx-mat-file-input formControlName="fotografia"/>
+              </mat-form-field>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="border-top p-2">
+      <ng-container *ngIf="!estaCargando();else cargando">
+        <div class="d-flex justify-content-between gap-4">
+          <button mat-raised-button color="primary" (click)="registrar()" [disabled]="formReg.invalid || estaCargando()">
+            <span>Crear registro</span>
+          </button>
+
+          <button mat-stroked-button (click)="imprimirReg()" *ngIf="alerta()">
+            <span>Imprimir registro</span>
+          </button>
+        </div>
+
+      </ng-container>
+    </mat-card-actions>
+    <mat-card-footer *ngIf="alerta()">
+      <div class="alert alert-success m-4" role="alert">
+        El registro fue realizado con exito
+      </div>
+    </mat-card-footer>
+  </mat-card>
+</div>
+<ng-template #cargando>
+  <div class="d-flex flex-fill mx-5">
+    <mat-progress-bar mode="indeterminate" color="primary"/>
+  </div>
+</ng-template>
