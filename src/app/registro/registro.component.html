@@ -92,10 +92,14 @@
                   </mat-select>
                 </mat-form-field>
               </div>
-              <mat-form-field>
-                <mat-label>Selecciona tu fotografia</mat-label>
-                <ngx-mat-file-input formControlName="fotografia"/>
-              </mat-form-field>
+              <div class="d-flex gap-4">
+                <img id="content" [src]="urlImg()" width="128" height="128"/>
+
+                <mat-form-field class="flex-fill">
+                  <mat-label>Selecciona tu fotografia</mat-label>
+                  <ngx-mat-file-input formControlName="fotografia" (change)="cambioImg($event)"/>
+                </mat-form-field>
+              </div>
             </div>
           </fieldset>
         </div>
